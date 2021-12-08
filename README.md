@@ -9,10 +9,13 @@
    -  The second part is paint the graph with GUI.
    
   This project uses the capabilities of data structures, object-oriented and GUI.
+  
+  **This project implements hashmap data structures for data storage and data management most efficiently.**
 
 # First part (Implementaion)
 
-* We were required in the current project to implements interfaces. 
+* We were required in the current project to implements interfaces.
+ 
 The interfaces are:
 
 | *Interfaces* | *Details* |
@@ -22,6 +25,11 @@ The interfaces are:
 |EdgeData |represents the set of operations applicable on a directional edge(src,dest) in a (directional) weighted graph|
 |NodeData |represents the set of operations applicable on a node (vertex) in a (directional) weighted graph|
 |GeoLocation |represents a geo location <x,y,z>, (aka Point3D data)|
+
+
+
+
+
 
 ## Point3D class - implement GeoLocation
 - This class is a simple class that represent location.
@@ -69,7 +77,7 @@ The interfaces are:
 
 ## DirectWeightGraph class - implement DirectedWeightedGraph
 - This class implement an directional weighted graph (Support a large number of nodes).
-- This Implementation based on HashMap data structure.
+- This implementation based on HashMap data structure.
 
 - Each DirectWeightGraph contains few fields:
   - nodes: HashMap data structure that represent the groupd of nodes by their ID's
@@ -103,4 +111,24 @@ The interfaces are:
 ## DirectWeightGraphAlgo class - implement DirectedWeightedGraphAlgorithm
 - This class represents a directed (positive) weighted Graph and implement Theory Algorithms including:
  init,copy, isConnected, shortedPath , center , tsp and save&load with JSON file.
+
+- This implementation based on HashMap data structure.
+
+- Each DirectWeightGraph contains few fields:
+  - dwg : DirectedWeightedGraph that represent a graph.
+  - parents: HashMap data structure that represent each node and his parent
+
+ | *Methods* | *Details* | *Time Complexity*|
+| ---------------|--------------- |-------------|
+|init(DirectedWeightedGraph g)|Inits the graph on which this set of algorithms operates on|O(1)|
+|getGraph()|Returns the underlying graph of which this class works|O(1)|
+|copy()|Computes a deep copy of this weighted graph|O(V+E) V - Size of vertices , E - Size of edges|
+|isConnected()|Returns true if and only if (iff) there is a valid path from each node to each|O(V+E) V - Size of vertices , E - Size of edges|
+|shortestPathDist(int src,int dest)|Computes the length of the shortest path between src to dest|O(V+E* Log(V)) V - Size of vertices , E - Size of edges|
+|shortestPath(int src, int dest)|Computes the the shortest path between src to dest - as an ordered List of nodes|O(V+E* Log(V)) V - Size of vertices , E - Size of edges
+|center()|Finds the NodeData which minimizes the max distance to all the other nodes|O(V^3) V - Size of vertices|
+|tsp(List<NodeData> cities)|Computes a list of consecutive nodes which go over all the nodes in cities|
+|save(String file)|Saves this weighted (directed) graph to the given file name - in JSON format|
+|load(String file)|This method loads a graph to this graph algorithm|
+
 
