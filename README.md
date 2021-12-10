@@ -32,6 +32,9 @@ The interfaces are:
 
 
 ## Point3D class - implement GeoLocation
+<details>
+  <summary>Click to expand!</summary>
+  
 - This class is a simple class that represent location.
 
 | *Methods* | *Details* |
@@ -57,7 +60,12 @@ The interfaces are:
 |getTag() \ setTag(int tag) |Get or set tag of Node|
 |getInfo() \ setInfo(String s) |Get or set info of Node|
 
+</details>
+  
 ## Edges class - implement EdgeData
+<details>
+  <summary>Click to expand!</summary>
+  
 - This class implement a set of operations applicable on a directional edge(src --> dest) in a (directional) weighted graph.
 
 - Each edge contains few fields:
@@ -74,8 +82,12 @@ The interfaces are:
 |getWeight() |Get the weight of this edge (positive value)|
 |getTag() \ setTag(int tag) |This method allows setting the "tag" value for temporal marking an edge - common practice for marking by algorithms|
 |getInfo() \ setInfo(String s) |Get or set info of Node|
+</details>
 
 ## DirectWeightGraph class - implement DirectedWeightedGraph
+<details>
+  <summary>Click to expand!</summary>
+  
 - This class implement an directional weighted graph (Support a large number of nodes).
 - This implementation based on HashMap data structure.
 
@@ -108,7 +120,12 @@ The interfaces are:
 |nodeOutEdges(int key)|Return true if this node have outgoing edges|O(1)
 |nodeInEdges(int key|Return true if this node have ingoing edges|O(1)
 
+</details>
+  
 ## DirectWeightGraphAlgo class - implement DirectedWeightedGraphAlgorithm
+<details>
+  <summary>Click to expand!</summary>
+  
 - This class represents a directed (positive) weighted Graph and implement Theory Algorithms including:
  init,copy, isConnected, shortedPath , center , tsp and save&load with JSON file.
 
@@ -131,4 +148,78 @@ The interfaces are:
 |save(String file)|Saves this weighted (directed) graph to the given file name - in JSON format|
 |load(String file)|This method loads a graph to this graph algorithm|
 
+  #### Algorithm explanation
+  
+  ```isConnected()``` 
+  <details>
+     <summary>Explanation</summary>
+    
+   Checks if there a path between every ∀u,v ∈V , This algorithm used Kosaraju.  
+    
+   Kosaraju algorithm based on DFS .
+    
+  - What is it actually does? -> it count the number of strongly connected components  
+    
+    1. DFS
+    2. Transpose the graph
+    3. DFS on transpose graph
+    4. return True if SCC.size==1  (SCC = A veriable to count the number of strongly connected components contain in graph)
+    
+    Time complexity = O(|V|+|E|) -> |V| = size of vertexes , |E| = size of edges.
+    
+</details>
+  
+  ```shortestPathDist(int src,int dest)```
+    <details>
+     <summary>Explanation</summary>
+    
+   Checks what is the shortest path distance between given src,dest∈V , This algorithm used Dijkstra.  
+    
+   Dijkstra check what is the lower weight path to get from u to v.
+   
+   In this program i implemented dijkstra with priority queue , which decrease the time complexity.
+    
+  - What is it actually does?  
+    
+    1. Set the "source" node weight 0.
+    2. Start to explore his neighbors.
+    3. Therefore, we will see if the weight of the neighbor is greater than the weight of this vertex and the weight of the tip that connects them.
+If so we will change the weight of the neighbor at the vertex weight + the weight of the edge.
 
+    4. Once we come across a neighbour who is also our destination , we will update his weight if necessary and return the weight of the neighbor who is also the destination.
+    5. If the weight isnt -1 it means that there is a path between given source and destination.
+    
+    Time complexity = O(|V|+|E|*Log|V|) -> |V| = size of vertexes , |E| = size of edges.
+    
+</details>
+  
+  ```shortestPath(int src,int dest)```
+  <details>
+     <summary>Explanation</summary>
+   This method returns the shorest path between src to dest - as an oredered List of nodes :src -> v1 -> v2 -> ... -> dest.
+    
+   This method will return null if there is no such path.
+    
+   I used the same algorithm as shorestPathDist but this method I reversed the list that Dijkstra created.
+    
+    Time Complexity : O(|V|+|E|*Log|V|) ->|V| - Vertices , |E| - Edges
+    
+  </details>
+  
+  
+  ```center()```
+<details>
+  <summary>Explanation</summary>
+      
+   The method basically takes vertex 'u' and checks its distance from each vertex 'v' belonging to V
+      
+   and saves the maximum distance from vertex 'u' to 'v' in a data format.
+      
+   This operation is performed on any vertex 'u' belonging to V.
+      
+   Finally we will select the minimum of all maximum distances and also the node id to return it.
+      
+    Time Complexity : O(|V|^3)   |V| - vertexes.
+      
+</details>
+  
