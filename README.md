@@ -161,8 +161,14 @@ The interfaces are:
   - What is it actually does? -> it count the number of strongly connected components  
     
     1. DFS
+    
+    ![dfs](https://user-images.githubusercontent.com/92351152/145615337-72e81ab5-5081-4bcb-9bcd-33aaadb795c5.gif)
+
     2. Transpose the graph
     3. DFS on transpose graph
+    
+    ![dfsT](https://user-images.githubusercontent.com/92351152/145615372-9d945e19-7a76-450d-a5dc-31f0fe2b9173.gif)
+
     4. return True if SCC.size==1  (SCC = A veriable to count the number of strongly connected components contain in graph)
     
     Time complexity = O(|V|+|E|) -> |V| = size of vertexes , |E| = size of edges.
@@ -172,7 +178,7 @@ The interfaces are:
   ```shortestPathDist(int src,int dest)```
     <details>
      <summary>Explanation</summary>
-    
+   
    Checks what is the shortest path distance between given src,dest∈V , This algorithm used Dijkstra.  
     
    Dijkstra check what is the lower weight path to get from u to v.
@@ -188,6 +194,9 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
 
     4. Once we come across a neighbour who is also our destination , we will update his weight if necessary and return the weight of the neighbor who is also the destination.
     5. If the weight isnt -1 it means that there is a path between given source and destination.
+   
+    ![Dijkstra](https://user-images.githubusercontent.com/92351152/145614084-391100ad-325b-4cec-951d-19c9a81dc01e.gif)
+
     
     Time complexity = O(|V|+|E|*Log|V|) -> |V| = size of vertexes , |E| = size of edges.
     
@@ -222,4 +231,16 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
     Time Complexity : O(|V|^3)   |V| - vertexes.
       
 </details>
+  
+  
+  
+  
+  
+  
+  
+  
+  ### Private methods
+  
+  
+  
   
