@@ -15,7 +15,6 @@ import java.util.*;
 public class DirectWeightGraphAlgo implements DirectedWeightedGraphAlgorithms {
     private DirectedWeightedGraph dwg;
     private HashMap<NodeData, NodeData> parents = new HashMap<>();
-    private int Time = 0;
 
     public static void main(String[] args) {
         DirectedWeightedGraph dwg = new DirectWeightGraph();
@@ -34,23 +33,19 @@ public class DirectWeightGraphAlgo implements DirectedWeightedGraphAlgorithms {
 //        //Remove nodes
 ////        dwg.removeNode(0);
 ////        dwg.removeNode(1);
-
-
-        DirectWeightGraphAlgo dwga1 = new DirectWeightGraphAlgo();
-        dwga1.init(dwg);
-        dwga1.load("G1.json");
-
-        DirectedWeightedGraph dwg1Trans = dwga1.transpose();
-        DirectedWeightedGraphAlgorithms dwga1Trans = new DirectWeightGraphAlgo();
-
-        System.out.println(dwga1.shortestPath(1, 11));
-        System.out.println(dwga1.shortestPathDist(1, 11));
-        System.out.println(dwga1.dwg.edgeSize());
-        System.out.println(dwga1.dwg.nodeSize());
-
-
-
-
+//
+//
+//        DirectWeightGraphAlgo dwga1 = new DirectWeightGraphAlgo();
+//        dwga1.init(dwg);
+//        dwga1.load("G1.json");
+//
+//        DirectedWeightedGraph dwg1Trans = dwga1.transpose();
+//        DirectedWeightedGraphAlgorithms dwga1Trans = new DirectWeightGraphAlgo();
+//
+//        System.out.println(dwga1.shortestPath(1, 11));
+//        System.out.println(dwga1.shortestPathDist(1, 11));
+//        System.out.println(dwga1.dwg.edgeSize());
+//        System.out.println(dwga1.dwg.nodeSize());
     }
 
     /**
