@@ -241,6 +241,22 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
   
   ### Private methods
   
+  </details>
   
+  # Second part
+  ### How to use:
   
+   - Open cmd in the project directory (do not move Ex2.jar to other directorys)
+  
+      - ![Ex2howto](https://user-images.githubusercontent.com/92351152/145798926-7469599a-b02c-4f13-ab8c-842a4a4ef3c9.jpg)
+
+
+   - Then, use this command syntax: java -jar Ex2.jar JSON_NAME.json
+  
+      - ![Ex2howto2](https://user-images.githubusercontent.com/92351152/145798942-ef2d011f-ab94-4662-87bd-5dd48892258d.jpg)
+
+  ##### Important:
+  - Running 1000Nodes.json and 10000Nodes.json is NOT RECOMMENDED AT ALL on nearly all home machines as they have thousands of edges
+  
+  - Also worth noting that you will receive a FileNotFoundException if the file doesn't exist or if there is a typo.
   
