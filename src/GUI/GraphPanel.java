@@ -12,6 +12,7 @@ import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GraphPanel extends JPanel implements MouseListener,ActionListener {
     static int srcc, destt;
@@ -303,7 +304,16 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
                     srcc = Integer.parseInt(vertex1.getText());
                     destt = Integer.parseInt(vertex2.getText());
                     double path_dist = this.dwga.shortestPathDist(srcc, destt);
-                    JOptionPane.showMessageDialog(null, "The shortest distance to " + destt + " from " + srcc + " is: " + String.format("%.2f", path_dist), "Shortest path", JOptionPane.INFORMATION_MESSAGE);
+                    List<NodeData> ls = this.dwga.shortestPath(srcc,destt);
+                    //print the path on screen
+                    String path = "";      int count = 0;
+                    for (NodeData nodeData : ls) {
+                        if (count<ls.size()-1)path+=nodeData.getKey()+" -> ";
+                        else  path = path +" "+nodeData.getKey() ;
+                        count++;
+                    }
+                    JOptionPane.showMessageDialog(null, "The shortest distance to " + destt + " from " + srcc + " is: " + String.format("%.2f", path_dist) + "" +
+                            "\n"+path, "Shortest path", JOptionPane.INFORMATION_MESSAGE);
                 }catch(Exception e){
                     System.err.println("Invalid input");
                 }
@@ -379,6 +389,16 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
                     cities.add(key);
                     b =JOptionPane.showConfirmDialog(null, "Would you like to input another number? yes or no\n\nClick no to start the algorithm", "More Inputs", JOptionPane.YES_NO_OPTION);
                 }
+                List<NodeData> ls;
+                ls = tsp(cities);
+                //print the path on screen
+                String path = "";      int count = 0;
+                for (NodeData nodeData : ls) {
+                    if (count<ls.size()-1)path+=nodeData.getKey()+" -> ";
+                    else  path = path +" "+nodeData.getKey() ;
+                    count++;
+                }
+                JOptionPane.showConfirmDialog(null, path, "TSP path", JOptionPane.OK_OPTION);
             }
         }
     }
