@@ -68,7 +68,6 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
                 options(action);
                 break;
             case ("clean-up"):
-                //remove(previousPanel);
                 action = str;
                 this.revalidate();
                 this.repaint();
@@ -293,57 +292,99 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
                 break;
             }
             case ("Shortest Path"): {
-                String inputString1 = JOptionPane.showInputDialog(null, "Enter node source ID");
-                String inputString2 = JOptionPane.showInputDialog(null, "Enter node destination ID");
-                srcc = Integer.parseInt(inputString1);
-                destt = Integer.parseInt(inputString2);
-                double path_dist = this.dwga.shortestPathDist(srcc, destt);
-                JOptionPane.showMessageDialog(null, "The shortest distance to " + destt + " from " + srcc + " is: " + String.format("%.2f", path_dist), "Shortest path", JOptionPane.INFORMATION_MESSAGE);
+                JTextField vertex1 = new JTextField();
+                JTextField vertex2 = new JTextField();
+                Object[] input = {
+                        "Enter node source ID :", vertex1,
+                        "Enter node destination ID :", vertex2,
+                };
+                int option = JOptionPane.showConfirmDialog(null, input, "Shortest Path", JOptionPane.OK_CANCEL_OPTION);
+                try {
+                    srcc = Integer.parseInt(vertex1.getText());
+                    destt = Integer.parseInt(vertex2.getText());
+                    double path_dist = this.dwga.shortestPathDist(srcc, destt);
+                    JOptionPane.showMessageDialog(null, "The shortest distance to " + destt + " from " + srcc + " is: " + String.format("%.2f", path_dist), "Shortest path", JOptionPane.INFORMATION_MESSAGE);
+                }catch(Exception e){
+                    System.err.println("Invalid input");
+                }
                 break;
             }
             case ("Add vertex"): {
-                String inputString1 = JOptionPane.showInputDialog(null, "Enter x");
-                String inputString2 = JOptionPane.showInputDialog(null, "Enter y");
-                String key = JOptionPane.showInputDialog(null, "Enter key");
-
-                addVertex(Double.parseDouble(inputString1),Double.parseDouble(inputString2),Integer.parseInt(key));
-//                xin = Double.parseDouble(inputString1);
-//                yin = Double.parseDouble(inputString2);
-//                temp_key = Integer.parseInt(key);
+                JTextField vx = new JTextField();
+                JTextField vy = new JTextField();
+                JTextField key = new JTextField();
+                Object[] input = {
+                        "Enter x :", vx,
+                        "Enter y :", vy,
+                        "Enter key :", key
+                };
+                int option = JOptionPane.showConfirmDialog(null, input, "Add vertex", JOptionPane.OK_CANCEL_OPTION);
+                try {
+                    addVertex(Double.parseDouble(vx.getText()), Double.parseDouble(vy.getText()), Integer.parseInt(key.getText()));
+                }catch(Exception e){
+                    System.err.println("Invalid input");
+                }
                 break;
             }
             case ("Add edge"): {
-                String inputString1 = JOptionPane.showInputDialog(null, "Enter key1");
-                String inputString2 = JOptionPane.showInputDialog(null, "Enter key2");
-                String inputString3 = JOptionPane.showInputDialog(null, "Enter weight");
-
-                srcc = Integer.parseInt(inputString1);
-                destt = Integer.parseInt(inputString2);
-                w = Double.parseDouble(inputString3);
+                JTextField vertex1 = new JTextField();
+                JTextField vertex2 = new JTextField();
+                JTextField weight = new JTextField();
+                Object[] input = {
+                        "Vertex source:", vertex1,
+                        "Vertex destination:", vertex2,
+                        "Weight :", weight
+                };
+                int option = JOptionPane.showConfirmDialog(null, input, "Add edge", JOptionPane.OK_CANCEL_OPTION);
+                try {
+                    srcc = Integer.parseInt(vertex1.getText());
+                    destt = Integer.parseInt(vertex2.getText());
+                    w = Double.parseDouble(weight.getText());
+                }catch(Exception e ){
+                    System.err.println("Invalid input");
+                }
                 break;
             }
             case ("Remove vertex"): {
                 String key = JOptionPane.showInputDialog(null, "Enter key");
-                temp_key = Integer.parseInt(key);
+                try {
+                    temp_key = Integer.parseInt(key);
+                }catch (Exception e){
+                    System.err.println("Invalid input");
+                }
                 break;
             }
             case ("Remove edge"): {
-                String inputString1 = JOptionPane.showInputDialog(null, "Enter key 1");
-                String inputString2 = JOptionPane.showInputDialog(null, "Enter key 2");
-                srcc = Integer.parseInt(inputString1);
-                destt = Integer.parseInt(inputString2);
+                JTextField vertex1 = new JTextField();
+                JTextField vertex2 = new JTextField();
+                Object[] input = {
+                        "Vertex source:", vertex1,
+                        "Vertex destination:", vertex2
+                };
+                int option = JOptionPane.showConfirmDialog(null, input, "Remove edge", JOptionPane.OK_CANCEL_OPTION);
+                try {
+                    srcc = Integer.parseInt(vertex1.getText());
+                    destt = Integer.parseInt(vertex2.getText());
+                }catch (Exception e){
+                    System.err.println("Invalid input");
+                }
+
+                break;
             }
             case ("TSP"): {
                 cities = new ArrayList<>();
                 int b = 0;
                 while (b == JOptionPane.YES_OPTION) {
-                    NodeData key = dwga.getGraph().getNode(Integer.parseInt(JOptionPane.showInputDialog("Enter city key to add to list of cities", JOptionPane.OK_CANCEL_OPTION)));
+                    NodeData key = dwga.getGraph().getNode(Integer.parseInt(JOptionPane.showInputDialog("Enter city key to add to list of cities")));
                     cities.add(key);
                     b =JOptionPane.showConfirmDialog(null, "Would you like to input another number? yes or no\n\nClick no to start the algorithm", "More Inputs", JOptionPane.YES_NO_OPTION);
                 }
             }
         }
     }
+
+
+
 
 
     private void addVertex(double x,double y, int key) {
@@ -355,7 +396,6 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
             dwga.getGraph().addNode(new Node(new Point3D(x, y), 0, key));
         }catch(ArithmeticException e)   {e.printStackTrace();} ;
     }
-
 
 
     // ****************** Private methods ******************
@@ -415,17 +455,17 @@ public class GraphPanel extends JPanel implements MouseListener,ActionListener {
     // ****************************************************
 
     @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
     public void mousePressed(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         System.out.println(x+","+y);
 
         System.out.println("mousePressed");
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
     }
 
     @Override
