@@ -252,7 +252,7 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
 
 
   
-   - Open cmd in the project directory (do not move Ex2.jar to other directorys)
+   - Open cmd in the project folder (do not move Ex2.jar to other folders)
   
       - ![Ex2howto](https://user-images.githubusercontent.com/92351152/145798926-7469599a-b02c-4f13-ab8c-842a4a4ef3c9.jpg)
 
