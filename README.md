@@ -266,3 +266,16 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
   
   - Also worth noting that you will receive a FileNotFoundException if the file doesn't exist or if there is a typo.
   
+  
+  #Time analysis
+  
+  
+|                        | 1,000 vertices | 10,000 vertices | 100,000 vertices | 1,000,000 vertices |
+|:----------------------:|:--------------:|:---------------:|:----------------:|:------------------:|
+|       Build Graph      |      36ms      |      462ms      |     18s 873ms    |      30s 135ms     |
+|         Center         |     10m 13ms   |     Timeout     |      Timeout     |       Timeout      |
+|      Shortest Path     |      280ms     |     1s 39ms     |     12s 7ms      |    Out of memory   |
+| Shortest Path Distance |      73ms      |      512ms      |      7s 63ms     |    Out of memory   |
+|           TSP          |      221ms     |     15s 243ms   |     62s 307ms    |    Out of memory   |
+|      is Connected      |      25ms      |      266ms      |     8s 175ms     |    Out of Memory   |
+  
