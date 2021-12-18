@@ -267,7 +267,7 @@ If so we will change the weight of the neighbor at the vertex weight + the weigh
   - Also worth noting that you will receive a FileNotFoundException if the file doesn't exist or if there is a typo.
   
   
-  #Time analysis
+  # Time analysis
   
   
 |                        | 1,000 vertices | 10,000 vertices | 100,000 vertices | 1,000,000 vertices |
