@@ -1,5 +1,3 @@
-# Ex2_OOP_Graphs
-> Made by Or cohen and Shlomi lantser
 
 ### Introduction
   This project is an assignment in an object-oriented course.
